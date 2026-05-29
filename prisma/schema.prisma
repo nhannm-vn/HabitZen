@@ -1,0 +1,307 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+enum UserRole {
+  user
+  admin
+}
+
+enum HabitGoalType {
+  boolean
+  count
+  duration
+  distance
+}
+
+enum HabitStatus {
+  active
+  paused
+  archived
+}
+
+enum HabitLogStatus {
+  pending
+  completed
+  partial
+  missed
+  skipped
+}
+
+enum ScheduleRepeatType {
+  daily
+  weekly
+  monthly
+  custom
+}
+
+enum TemplateDifficulty {
+  beginner
+  intermediate
+  advanced
+}
+
+model User {
+  id              String   @id @default(uuid()) @db.Uuid
+  email           String   @unique @db.VarChar(255)
+  passwordHash    String   @map("password_hash") @db.VarChar(255)
+  fullName        String   @map("full_name") @db.VarChar(100)
+  timezone        String   @default("Asia/Ho_Chi_Minh") @db.VarChar(50)
+  role            UserRole @default(user)
+  isActive        Boolean  @default(true) @map("is_active")
+  lastLoginAt     DateTime? @map("last_login_at")
+
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  categories              Category[]
+  habits                  Habit[]
+  habitLogs               HabitLog[]
+  reminders               Reminder[]
+  streaks                 Streak[]
+  adminLogs               AdminLog[]
+  createdTemplates        CelebrityHabitTemplate[] @relation("TemplateCreatedBy")
+  importedTemplates       UserImportedTemplate[]
+
+  @@map("users")
+}
+
+model Category {
+  id            String   @id @default(uuid()) @db.Uuid
+  userId        String?  @map("user_id") @db.Uuid
+
+  name          String   @db.VarChar(100)
+  color         String?  @db.VarChar(7)
+  icon          String?  @db.VarChar(50)
+  isDefault     Boolean  @default(false) @map("is_default")
+
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  user          User?    @relation(fields: [userId], references: [id])
+  habits        Habit[]
+  templates     CelebrityHabitTemplate[]
+
+  @@map("categories")
+}
+
+model Habit {
+  id            String          @id @default(uuid()) @db.Uuid
+  userId        String          @map("user_id") @db.Uuid
+  categoryId    String?         @map("category_id") @db.Uuid
+
+  name          String          @db.VarChar(255)
+  description   String?
+
+  goalType      HabitGoalType   @map("goal_type")
+  goalValue     Float?          @map("goal_value")
+  goalUnit      String?         @map("goal_unit") @db.VarChar(30)
+
+  status        HabitStatus     @default(active)
+
+  startDate     DateTime        @map("start_date") @db.Date
+  endDate       DateTime?       @map("end_date") @db.Date
+
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+  deletedAt     DateTime?       @map("deleted_at")
+
+  user          User            @relation(fields: [userId], references: [id])
+  category      Category?       @relation(fields: [categoryId], references: [id])
+
+  schedule      Schedule?
+  logs          HabitLog[]
+  reminders     Reminder[]
+  streak        Streak?
+
+  @@map("habits")
+}
+
+model Schedule {
+  id            String               @id @default(uuid()) @db.Uuid
+  habitId       String               @unique @map("habit_id") @db.Uuid
+
+  repeatType    ScheduleRepeatType   @map("repeat_type")
+  repeatConfig  Json?                @map("repeat_config")
+
+  createdAt     DateTime             @default(now()) @map("created_at")
+  updatedAt     DateTime             @updatedAt @map("updated_at")
+  deletedAt     DateTime?            @map("deleted_at")
+
+  habit         Habit                @relation(fields: [habitId], references: [id])
+
+  @@map("schedules")
+}
+
+model HabitLog {
+  id              String            @id @default(uuid()) @db.Uuid
+  habitId         String            @map("habit_id") @db.Uuid
+  userId          String            @map("user_id") @db.Uuid
+
+  logDate         DateTime          @map("log_date") @db.Date
+
+  status          HabitLogStatus    @default(pending)
+
+  progressValue   Float?            @map("progress_value")
+  note            String?
+
+  checkedInAt     DateTime?         @map("checked_in_at")
+
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  deletedAt       DateTime?         @map("deleted_at")
+
+  habit           Habit             @relation(fields: [habitId], references: [id])
+  user            User              @relation(fields: [userId], references: [id])
+
+  @@unique([habitId, logDate], map: "uqHabitLogPerDay")
+  @@map("habit_logs")
+}
+
+model Reminder {
+  id            String      @id @default(uuid()) @db.Uuid
+  habitId       String      @map("habit_id") @db.Uuid
+  userId        String      @map("user_id") @db.Uuid
+
+  remindAt      DateTime    @map("remind_at") @db.Time
+  isEnabled     Boolean     @default(true) @map("is_enabled")
+
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+  deletedAt     DateTime?   @map("deleted_at")
+
+  habit         Habit       @relation(fields: [habitId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+
+  @@map("reminders")
+}
+
+model Streak {
+  id                  String      @id @default(uuid()) @db.Uuid
+  habitId             String      @unique @map("habit_id") @db.Uuid
+  userId              String      @map("user_id") @db.Uuid
+
+  currentStreak       Int         @default(0) @map("current_streak")
+  longestStreak       Int         @default(0) @map("longest_streak")
+  lastCompletedDate   DateTime?   @map("last_completed_date") @db.Date
+
+  createdAt           DateTime    @default(now()) @map("created_at")
+  updatedAt           DateTime    @updatedAt @map("updated_at")
+  deletedAt           DateTime?   @map("deleted_at")
+
+  habit               Habit       @relation(fields: [habitId], references: [id])
+  user                User        @relation(fields: [userId], references: [id])
+
+  @@map("streaks")
+}
+
+model AdminLog {
+  id            String      @id @default(uuid()) @db.Uuid
+  adminId       String      @map("admin_id") @db.Uuid
+
+  action        String      @db.VarChar(100)
+
+  targetType    String?     @map("target_type") @db.VarChar(50)
+  targetId      String?     @map("target_id") @db.Uuid
+
+  metadata      Json?
+
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+  deletedAt     DateTime?   @map("deleted_at")
+
+  admin         User        @relation(fields: [adminId], references: [id])
+
+  @@map("admin_logs")
+}
+
+model CelebrityHabitTemplate {
+  id                  String                      @id @default(uuid()) @db.Uuid
+
+  celebrityName       String                      @map("celebrity_name") @db.VarChar(100)
+  title               String                      @db.VarChar(255)
+  description         String?
+
+  categoryId          String?                     @map("category_id") @db.Uuid
+
+  difficulty          TemplateDifficulty          @default(beginner)
+  estimatedMinutes    Int?                        @map("estimated_minutes")
+
+  isPublic            Boolean                     @default(true) @map("is_public")
+  isFeatured          Boolean                     @default(false) @map("is_featured")
+
+  createdBy           String?                     @map("created_by") @db.Uuid
+
+  createdAt           DateTime                    @default(now()) @map("created_at")
+  updatedAt           DateTime                    @updatedAt @map("updated_at")
+  deletedAt           DateTime?                   @map("deleted_at")
+
+  category            Category?                   @relation(fields: [categoryId], references: [id])
+  creator             User?                       @relation("TemplateCreatedBy", fields: [createdBy], references: [id])
+
+  items               CelebrityHabitTemplateItem[]
+  importedByUsers     UserImportedTemplate[]
+
+  @@map("celebrity_habit_templates")
+}
+
+model CelebrityHabitTemplateItem {
+  id              String               @id @default(uuid()) @db.Uuid
+
+  templateId      String               @map("template_id") @db.Uuid
+
+  name            String               @db.VarChar(255)
+  description     String?
+
+  goalType        HabitGoalType        @map("goal_type")
+  goalValue       Float?               @map("goal_value")
+  goalUnit        String?              @map("goal_unit") @db.VarChar(30)
+
+  repeatType      ScheduleRepeatType   @map("repeat_type")
+  repeatConfig    Json?                @map("repeat_config")
+
+  displayOrder    Int                  @default(0) @map("display_order")
+
+  createdAt       DateTime             @default(now()) @map("created_at")
+  updatedAt       DateTime             @updatedAt @map("updated_at")
+  deletedAt       DateTime?            @map("deleted_at")
+
+  template        CelebrityHabitTemplate @relation(fields: [templateId], references: [id])
+
+  @@map("celebrity_habit_template_items")
+}
+
+model UserImportedTemplate {
+  id            String      @id @default(uuid()) @db.Uuid
+
+  userId        String      @map("user_id") @db.Uuid
+  templateId    String      @map("template_id") @db.Uuid
+
+  importedAt    DateTime    @default(now()) @map("imported_at")
+
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+  deletedAt     DateTime?   @map("deleted_at")
+
+  user          User        @relation(fields: [userId], references: [id])
+  template      CelebrityHabitTemplate @relation(fields: [templateId], references: [id])
+
+  @@unique([userId, templateId], map: "uqUserImportedTemplate")
+  @@map("user_imported_templates")
+}
+
+
