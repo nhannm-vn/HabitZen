@@ -3,9 +3,10 @@ import { AuthModule } from './routes/auth/auth.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AppConfigModule } from './config/config.module';
 
 @Module({
-  imports: [SharedModule, AuthModule],
+  imports: [AppConfigModule, SharedModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
