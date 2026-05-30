@@ -21,6 +21,7 @@ async function bootstrap() {
     .setTitle('HabitZen API')
     .setDescription('API docs')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
