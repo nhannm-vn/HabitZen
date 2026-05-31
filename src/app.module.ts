@@ -11,6 +11,7 @@ import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { CategoriesModule } from './routes/categories/categories.module';
 import { HabitsModule } from './routes/habits/habits.module';
+import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { HabitsModule } from './routes/habits/habits.module';
     AuthModule,
     CategoriesModule,
     HabitsModule,
+    HabitLogsModule,
   ],
   controllers: [AppController],
   providers: [
