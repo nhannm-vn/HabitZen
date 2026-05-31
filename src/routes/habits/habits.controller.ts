@@ -21,6 +21,7 @@ import { RequestUser } from 'src/common/interfaces/request-user.interface';
 import { HabitStatus } from 'src/generated/prisma/enums';
 import { IsEnum, IsOptional, IsUUID } from 'class-validator';
 import { HabitsService } from './habits.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 /** Query string cho GET /habits — lọc theo trạng thái và danh mục. */
 class HabitQueryDto {
@@ -36,6 +37,7 @@ class HabitQueryDto {
 }
 
 /** API prefix: /habits */
+@ApiBearerAuth('access-token')
 @Controller('habits')
 export class HabitsController {
   constructor(private readonly habitsService: HabitsService) {}

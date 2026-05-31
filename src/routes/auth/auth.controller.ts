@@ -11,6 +11,7 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { RequestUser } from 'src/common/interfaces/request-user.interface';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 /** API prefix: /auth */
 @Controller('auth')
@@ -32,18 +33,21 @@ export class AuthController {
   }
 
   /** Lấy hồ sơ người dùng đang đăng nhập. */
+  @ApiBearerAuth('access-token')
   @Get('me')
   getMe(@CurrentUser() user: RequestUser) {
     return this.authService.getProfile(user.id);
   }
 
   /** Cập nhật tên hiển thị hoặc múi giờ. */
+  @ApiBearerAuth('access-token')
   @Patch('me')
   updateMe(@CurrentUser() user: RequestUser, @Body() dto: UpdateProfileDto) {
     return this.authService.updateProfile(user.id, dto);
   }
 
   /** Đổi mật khẩu — cần mật khẩu hiện tại. */
+  @ApiBearerAuth('access-token')
   @Post('change-password')
   changePassword(
     @CurrentUser() user: RequestUser,
