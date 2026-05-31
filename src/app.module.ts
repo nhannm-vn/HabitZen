@@ -10,9 +10,16 @@ import { RolesGuard } from './common/guards/roles.guard';
 import { GlobalExceptionFilter } from './common/filters/http-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { CategoriesModule } from './routes/categories/categories.module';
+import { HabitsModule } from './routes/habits/habits.module';
 
 @Module({
-  imports: [AppConfigModule, SharedModule, AuthModule, CategoriesModule],
+  imports: [
+    AppConfigModule,
+    SharedModule, //
+    AuthModule,
+    CategoriesModule,
+    HabitsModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
