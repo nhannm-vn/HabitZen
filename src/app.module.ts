@@ -17,6 +17,7 @@ import { RemindersModule } from './routes/reminders/reminders.module';
 import { StreaksModule } from './routes/streaks/streaks.module';
 import { StatisticsModule } from './routes/statistics/statistics.module';
 import { TemplatesModule } from './routes/templates/templates.module';
+import { AdminModule } from './routes/admin/admin.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TemplatesModule } from './routes/templates/templates.module';
     StreaksModule,
     StatisticsModule,
     TemplatesModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [
