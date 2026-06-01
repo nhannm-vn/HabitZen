@@ -12,6 +12,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 import { CategoriesModule } from './routes/categories/categories.module';
 import { HabitsModule } from './routes/habits/habits.module';
 import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
+import { DashboardModule } from './routes/dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
     CategoriesModule,
     HabitsModule,
     HabitLogsModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [
