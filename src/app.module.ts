@@ -16,6 +16,7 @@ import { DashboardModule } from './routes/dashboard/dashboard.module';
 import { RemindersModule } from './routes/reminders/reminders.module';
 import { StreaksModule } from './routes/streaks/streaks.module';
 import { StatisticsModule } from './routes/statistics/statistics.module';
+import { TemplatesModule } from './routes/templates/templates.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { StatisticsModule } from './routes/statistics/statistics.module';
     RemindersModule,
     StreaksModule,
     StatisticsModule,
+    TemplatesModule,
   ],
   controllers: [AppController],
   providers: [
