@@ -15,6 +15,10 @@ import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
 import { DashboardModule } from './routes/dashboard/dashboard.module';
 import { RemindersModule } from './routes/reminders/reminders.module';
 import { NotificationsModule } from './routes/notifications/notifications.module';
+import { StreaksModule } from './routes/streaks/streaks.module';
+import { StatisticsModule } from './routes/statistics/statistics.module';
+import { TemplatesModule } from './routes/templates/templates.module';
+import { AdminModule } from './routes/admin/admin.module';
 
 @Module({
   imports: [
@@ -30,6 +34,7 @@ import { NotificationsModule } from './routes/notifications/notifications.module
     StatisticsModule,
     TemplatesModule,
     AdminModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [
