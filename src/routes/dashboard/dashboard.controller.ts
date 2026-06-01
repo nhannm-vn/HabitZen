@@ -6,8 +6,10 @@ import { DashboardQueryDto } from './dto/dashboard-query.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { RequestUser } from 'src/common/interfaces/request-user.interface';
 import { DashboardService } from './dashboard.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 /** API prefix: /dashboard */
+@ApiBearerAuth('access-token')
 @Controller('dashboard')
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
