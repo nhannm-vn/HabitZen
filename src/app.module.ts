@@ -26,7 +26,10 @@ import { NotificationsModule } from './routes/notifications/notifications.module
     HabitLogsModule,
     DashboardModule,
     RemindersModule,
-    NotificationsModule,
+    StreaksModule,
+    StatisticsModule,
+    TemplatesModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [
