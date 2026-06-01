@@ -14,17 +14,19 @@ import { HabitsModule } from './routes/habits/habits.module';
 import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
 import { DashboardModule } from './routes/dashboard/dashboard.module';
 import { RemindersModule } from './routes/reminders/reminders.module';
+import { NotificationsModule } from './routes/notifications/notifications.module';
 
 @Module({
   imports: [
     AppConfigModule,
-    SharedModule, //
+    SharedModule,
     AuthModule,
     CategoriesModule,
     HabitsModule,
     HabitLogsModule,
     DashboardModule,
     RemindersModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [

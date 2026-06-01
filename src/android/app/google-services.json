@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651994339535",
+    "project_id": "habitzen-5f4ba",
+    "storage_bucket": "habitzen-5f4ba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651994339535:android:29b231d8cd248fa6c4ffba",
+        "android_client_info": {
+          "package_name": "com.company.habitzen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHzWnwPcRpyPWj1ggilix4AzhCX4v93Dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
