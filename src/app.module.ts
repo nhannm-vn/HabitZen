@@ -15,6 +15,7 @@ import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
 import { DashboardModule } from './routes/dashboard/dashboard.module';
 import { RemindersModule } from './routes/reminders/reminders.module';
 import { StreaksModule } from './routes/streaks/streaks.module';
+import { StatisticsModule } from './routes/statistics/statistics.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { StreaksModule } from './routes/streaks/streaks.module';
     DashboardModule,
     RemindersModule,
     StreaksModule,
+    StatisticsModule,
   ],
   controllers: [AppController],
   providers: [

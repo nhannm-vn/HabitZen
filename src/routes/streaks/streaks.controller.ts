@@ -7,8 +7,10 @@ import { StreakService } from 'src/shared/services/streak.service';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { RequestUser } from 'src/common/interfaces/request-user.interface';
 import { OwnershipService } from 'src/shared/services/ownership.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 /** API prefix: /streaks */
+@ApiBearerAuth('access-token')
 @Controller('streaks')
 export class StreaksController {
   constructor(
