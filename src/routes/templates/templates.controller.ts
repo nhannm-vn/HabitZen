@@ -7,6 +7,7 @@ import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { RequestUser } from 'src/common/interfaces/request-user.interface';
 import { IsBoolean, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 /** Query GET /templates — lọc độ khó và featured. */
 class TemplateQueryDto {
@@ -23,6 +24,7 @@ class TemplateQueryDto {
 }
 
 /** API prefix: /templates */
+@ApiBearerAuth('access-token')
 @Controller('templates')
 export class TemplatesController {
   constructor(private readonly templatesService: TemplatesService) {}
