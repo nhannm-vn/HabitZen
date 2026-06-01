@@ -14,15 +14,12 @@ import { HabitsModule } from './routes/habits/habits.module';
 import { HabitLogsModule } from './routes/habit-logs/habit-logs.module';
 import { DashboardModule } from './routes/dashboard/dashboard.module';
 import { RemindersModule } from './routes/reminders/reminders.module';
-import { StreaksModule } from './routes/streaks/streaks.module';
-import { StatisticsModule } from './routes/statistics/statistics.module';
-import { TemplatesModule } from './routes/templates/templates.module';
-import { AdminModule } from './routes/admin/admin.module';
+import { NotificationsModule } from './routes/notifications/notifications.module';
 
 @Module({
   imports: [
     AppConfigModule,
-    SharedModule, //
+    SharedModule,
     AuthModule,
     CategoriesModule,
     HabitsModule,

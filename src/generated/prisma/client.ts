@@ -45,6 +45,11 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model UserDeviceToken
+ * 
+ */
+export type UserDeviceToken = Prisma.UserDeviceTokenModel
+/**
  * Model Category
  * 
  */

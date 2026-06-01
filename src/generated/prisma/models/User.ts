@@ -238,6 +238,7 @@ export type UserWhereInput = {
   adminLogs?: Prisma.AdminLogListRelationFilter
   createdTemplates?: Prisma.CelebrityHabitTemplateListRelationFilter
   importedTemplates?: Prisma.UserImportedTemplateListRelationFilter
+  deviceTokens?: Prisma.UserDeviceTokenListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -260,6 +261,7 @@ export type UserOrderByWithRelationInput = {
   adminLogs?: Prisma.AdminLogOrderByRelationAggregateInput
   createdTemplates?: Prisma.CelebrityHabitTemplateOrderByRelationAggregateInput
   importedTemplates?: Prisma.UserImportedTemplateOrderByRelationAggregateInput
+  deviceTokens?: Prisma.UserDeviceTokenOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +287,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   adminLogs?: Prisma.AdminLogListRelationFilter
   createdTemplates?: Prisma.CelebrityHabitTemplateListRelationFilter
   importedTemplates?: Prisma.UserImportedTemplateListRelationFilter
+  deviceTokens?: Prisma.UserDeviceTokenListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -341,6 +344,7 @@ export type UserCreateInput = {
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -363,6 +367,7 @@ export type UserUncheckedCreateInput = {
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -385,6 +390,7 @@ export type UserUpdateInput = {
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -407,6 +413,7 @@ export type UserUncheckedUpdateInput = {
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -493,14 +500,14 @@ export type UserMinOrderByAggregateInput = {
   deletedAt?: Prisma.SortOrder
 }
 
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
-}
-
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -521,6 +528,20 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type UserCreateNestedOneWithoutDeviceTokensInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeviceTokensInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDeviceTokensNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDeviceTokensInput
+  upsert?: Prisma.UserUpsertWithoutDeviceTokensInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDeviceTokensInput, Prisma.UserUpdateWithoutDeviceTokensInput>, Prisma.UserUncheckedUpdateWithoutDeviceTokensInput>
 }
 
 export type UserCreateNestedOneWithoutCategoriesInput = {
@@ -639,6 +660,110 @@ export type UserUpdateOneRequiredWithoutImportedTemplatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutImportedTemplatesInput, Prisma.UserUpdateWithoutImportedTemplatesInput>, Prisma.UserUncheckedUpdateWithoutImportedTemplatesInput>
 }
 
+export type UserCreateWithoutDeviceTokensInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  fullName: string
+  timezone?: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  categories?: Prisma.CategoryCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitCreateNestedManyWithoutUserInput
+  habitLogs?: Prisma.HabitLogCreateNestedManyWithoutUserInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
+  adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
+  createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
+  importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDeviceTokensInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  fullName: string
+  timezone?: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutUserInput
+  habits?: Prisma.HabitUncheckedCreateNestedManyWithoutUserInput
+  habitLogs?: Prisma.HabitLogUncheckedCreateNestedManyWithoutUserInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutUserInput
+  streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
+  adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
+  createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDeviceTokensInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+}
+
+export type UserUpsertWithoutDeviceTokensInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDeviceTokensInput, Prisma.UserUncheckedUpdateWithoutDeviceTokensInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDeviceTokensInput, Prisma.UserUncheckedCreateWithoutDeviceTokensInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDeviceTokensInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDeviceTokensInput, Prisma.UserUncheckedUpdateWithoutDeviceTokensInput>
+}
+
+export type UserUpdateWithoutDeviceTokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  categories?: Prisma.CategoryUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUpdateManyWithoutUserNestedInput
+  habitLogs?: Prisma.HabitLogUpdateManyWithoutUserNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
+  adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
+  createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
+  importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDeviceTokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutUserNestedInput
+  habits?: Prisma.HabitUncheckedUpdateManyWithoutUserNestedInput
+  habitLogs?: Prisma.HabitLogUncheckedUpdateManyWithoutUserNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutUserNestedInput
+  streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
+  adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
+  createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+}
+
 export type UserCreateWithoutCategoriesInput = {
   id?: string
   email: string
@@ -658,6 +783,7 @@ export type UserCreateWithoutCategoriesInput = {
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCategoriesInput = {
@@ -679,6 +805,7 @@ export type UserUncheckedCreateWithoutCategoriesInput = {
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCategoriesInput = {
@@ -716,6 +843,7 @@ export type UserUpdateWithoutCategoriesInput = {
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCategoriesInput = {
@@ -737,6 +865,7 @@ export type UserUncheckedUpdateWithoutCategoriesInput = {
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutHabitsInput = {
@@ -758,6 +887,7 @@ export type UserCreateWithoutHabitsInput = {
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHabitsInput = {
@@ -779,6 +909,7 @@ export type UserUncheckedCreateWithoutHabitsInput = {
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHabitsInput = {
@@ -816,6 +947,7 @@ export type UserUpdateWithoutHabitsInput = {
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHabitsInput = {
@@ -837,6 +969,7 @@ export type UserUncheckedUpdateWithoutHabitsInput = {
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutHabitLogsInput = {
@@ -858,6 +991,7 @@ export type UserCreateWithoutHabitLogsInput = {
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHabitLogsInput = {
@@ -879,6 +1013,7 @@ export type UserUncheckedCreateWithoutHabitLogsInput = {
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHabitLogsInput = {
@@ -916,6 +1051,7 @@ export type UserUpdateWithoutHabitLogsInput = {
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHabitLogsInput = {
@@ -937,6 +1073,7 @@ export type UserUncheckedUpdateWithoutHabitLogsInput = {
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRemindersInput = {
@@ -958,6 +1095,7 @@ export type UserCreateWithoutRemindersInput = {
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRemindersInput = {
@@ -979,6 +1117,7 @@ export type UserUncheckedCreateWithoutRemindersInput = {
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRemindersInput = {
@@ -1016,6 +1155,7 @@ export type UserUpdateWithoutRemindersInput = {
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRemindersInput = {
@@ -1037,6 +1177,7 @@ export type UserUncheckedUpdateWithoutRemindersInput = {
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStreaksInput = {
@@ -1058,6 +1199,7 @@ export type UserCreateWithoutStreaksInput = {
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStreaksInput = {
@@ -1079,6 +1221,7 @@ export type UserUncheckedCreateWithoutStreaksInput = {
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStreaksInput = {
@@ -1116,6 +1259,7 @@ export type UserUpdateWithoutStreaksInput = {
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStreaksInput = {
@@ -1137,6 +1281,7 @@ export type UserUncheckedUpdateWithoutStreaksInput = {
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAdminLogsInput = {
@@ -1158,6 +1303,7 @@ export type UserCreateWithoutAdminLogsInput = {
   streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAdminLogsInput = {
@@ -1179,6 +1325,7 @@ export type UserUncheckedCreateWithoutAdminLogsInput = {
   streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAdminLogsInput = {
@@ -1216,6 +1363,7 @@ export type UserUpdateWithoutAdminLogsInput = {
   streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAdminLogsInput = {
@@ -1237,6 +1385,7 @@ export type UserUncheckedUpdateWithoutAdminLogsInput = {
   streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedTemplatesInput = {
@@ -1258,6 +1407,7 @@ export type UserCreateWithoutCreatedTemplatesInput = {
   streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   importedTemplates?: Prisma.UserImportedTemplateCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedTemplatesInput = {
@@ -1279,6 +1429,7 @@ export type UserUncheckedCreateWithoutCreatedTemplatesInput = {
   streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedCreateNestedManyWithoutUserInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedTemplatesInput = {
@@ -1316,6 +1467,7 @@ export type UserUpdateWithoutCreatedTemplatesInput = {
   streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedTemplatesInput = {
@@ -1337,6 +1489,7 @@ export type UserUncheckedUpdateWithoutCreatedTemplatesInput = {
   streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   importedTemplates?: Prisma.UserImportedTemplateUncheckedUpdateManyWithoutUserNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutImportedTemplatesInput = {
@@ -1358,6 +1511,7 @@ export type UserCreateWithoutImportedTemplatesInput = {
   streaks?: Prisma.StreakCreateNestedManyWithoutUserInput
   adminLogs?: Prisma.AdminLogCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateCreateNestedManyWithoutCreatorInput
+  deviceTokens?: Prisma.UserDeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutImportedTemplatesInput = {
@@ -1379,6 +1533,7 @@ export type UserUncheckedCreateWithoutImportedTemplatesInput = {
   streaks?: Prisma.StreakUncheckedCreateNestedManyWithoutUserInput
   adminLogs?: Prisma.AdminLogUncheckedCreateNestedManyWithoutAdminInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutImportedTemplatesInput = {
@@ -1416,6 +1571,7 @@ export type UserUpdateWithoutImportedTemplatesInput = {
   streaks?: Prisma.StreakUpdateManyWithoutUserNestedInput
   adminLogs?: Prisma.AdminLogUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUpdateManyWithoutCreatorNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutImportedTemplatesInput = {
@@ -1437,6 +1593,7 @@ export type UserUncheckedUpdateWithoutImportedTemplatesInput = {
   streaks?: Prisma.StreakUncheckedUpdateManyWithoutUserNestedInput
   adminLogs?: Prisma.AdminLogUncheckedUpdateManyWithoutAdminNestedInput
   createdTemplates?: Prisma.CelebrityHabitTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  deviceTokens?: Prisma.UserDeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1453,6 +1610,7 @@ export type UserCountOutputType = {
   adminLogs: number
   createdTemplates: number
   importedTemplates: number
+  deviceTokens: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1464,6 +1622,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   adminLogs?: boolean | UserCountOutputTypeCountAdminLogsArgs
   createdTemplates?: boolean | UserCountOutputTypeCountCreatedTemplatesArgs
   importedTemplates?: boolean | UserCountOutputTypeCountImportedTemplatesArgs
+  deviceTokens?: boolean | UserCountOutputTypeCountDeviceTokensArgs
 }
 
 /**
@@ -1532,6 +1691,13 @@ export type UserCountOutputTypeCountImportedTemplatesArgs<ExtArgs extends runtim
   where?: Prisma.UserImportedTemplateWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDeviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserDeviceTokenWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1553,6 +1719,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   adminLogs?: boolean | Prisma.User$adminLogsArgs<ExtArgs>
   createdTemplates?: boolean | Prisma.User$createdTemplatesArgs<ExtArgs>
   importedTemplates?: boolean | Prisma.User$importedTemplatesArgs<ExtArgs>
+  deviceTokens?: boolean | Prisma.User$deviceTokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1608,6 +1775,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   adminLogs?: boolean | Prisma.User$adminLogsArgs<ExtArgs>
   createdTemplates?: boolean | Prisma.User$createdTemplatesArgs<ExtArgs>
   importedTemplates?: boolean | Prisma.User$importedTemplatesArgs<ExtArgs>
+  deviceTokens?: boolean | Prisma.User$deviceTokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1624,6 +1792,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     adminLogs: Prisma.$AdminLogPayload<ExtArgs>[]
     createdTemplates: Prisma.$CelebrityHabitTemplatePayload<ExtArgs>[]
     importedTemplates: Prisma.$UserImportedTemplatePayload<ExtArgs>[]
+    deviceTokens: Prisma.$UserDeviceTokenPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2039,6 +2208,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   adminLogs<T extends Prisma.User$adminLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$adminLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdTemplates<T extends Prisma.User$createdTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CelebrityHabitTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   importedTemplates<T extends Prisma.User$importedTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$importedTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserImportedTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deviceTokens<T extends Prisma.User$deviceTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$deviceTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserDeviceTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2661,6 +2831,30 @@ export type User$importedTemplatesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.UserImportedTemplateScalarFieldEnum | Prisma.UserImportedTemplateScalarFieldEnum[]
+}
+
+/**
+ * User.deviceTokens
+ */
+export type User$deviceTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserDeviceToken
+   */
+  select?: Prisma.UserDeviceTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserDeviceToken
+   */
+  omit?: Prisma.UserDeviceTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserDeviceTokenInclude<ExtArgs> | null
+  where?: Prisma.UserDeviceTokenWhereInput
+  orderBy?: Prisma.UserDeviceTokenOrderByWithRelationInput | Prisma.UserDeviceTokenOrderByWithRelationInput[]
+  cursor?: Prisma.UserDeviceTokenWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserDeviceTokenScalarFieldEnum | Prisma.UserDeviceTokenScalarFieldEnum[]
 }
 
 /**

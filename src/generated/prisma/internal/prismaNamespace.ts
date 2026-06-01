@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  UserDeviceToken: 'UserDeviceToken',
   Category: 'Category',
   Habit: 'Habit',
   Schedule: 'Schedule',
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "category" | "habit" | "schedule" | "habitLog" | "reminder" | "streak" | "adminLog" | "celebrityHabitTemplate" | "celebrityHabitTemplateItem" | "userImportedTemplate"
+    modelProps: "user" | "userDeviceToken" | "category" | "habit" | "schedule" | "habitLog" | "reminder" | "streak" | "adminLog" | "celebrityHabitTemplate" | "celebrityHabitTemplateItem" | "userImportedTemplate"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -485,6 +486,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserDeviceToken: {
+      payload: Prisma.$UserDeviceTokenPayload<ExtArgs>
+      fields: Prisma.UserDeviceTokenFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserDeviceTokenFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserDeviceTokenFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>
+        }
+        findFirst: {
+          args: Prisma.UserDeviceTokenFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserDeviceTokenFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>
+        }
+        findMany: {
+          args: Prisma.UserDeviceTokenFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>[]
+        }
+        create: {
+          args: Prisma.UserDeviceTokenCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>
+        }
+        createMany: {
+          args: Prisma.UserDeviceTokenCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserDeviceTokenCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>[]
+        }
+        delete: {
+          args: Prisma.UserDeviceTokenDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>
+        }
+        update: {
+          args: Prisma.UserDeviceTokenUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserDeviceTokenDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserDeviceTokenUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserDeviceTokenUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserDeviceTokenUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserDeviceTokenPayload>
+        }
+        aggregate: {
+          args: Prisma.UserDeviceTokenAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserDeviceToken>
+        }
+        groupBy: {
+          args: Prisma.UserDeviceTokenGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserDeviceTokenGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserDeviceTokenCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserDeviceTokenCountAggregateOutputType> | number
         }
       }
     }
@@ -1284,6 +1359,20 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const UserDeviceTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  fcmToken: 'fcmToken',
+  deviceType: 'deviceType',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+} as const
+
+export type UserDeviceTokenScalarFieldEnum = (typeof UserDeviceTokenScalarFieldEnum)[keyof typeof UserDeviceTokenScalarFieldEnum]
+
+
 export const CategoryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1541,6 +1630,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'DeviceType'
+ */
+export type EnumDeviceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceType'>
+    
+
+
+/**
+ * Reference to a field of type 'DeviceType[]'
+ */
+export type ListEnumDeviceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceType[]'>
+    
+
+
+/**
  * Reference to a field of type 'HabitGoalType'
  */
 export type EnumHabitGoalTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HabitGoalType'>
@@ -1762,6 +1865,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  userDeviceToken?: Prisma.UserDeviceTokenOmit
   category?: Prisma.CategoryOmit
   habit?: Prisma.HabitOmit
   schedule?: Prisma.ScheduleOmit

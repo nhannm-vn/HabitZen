@@ -64,3 +64,12 @@ export const TemplateDifficulty = {
 } as const
 
 export type TemplateDifficulty = (typeof TemplateDifficulty)[keyof typeof TemplateDifficulty]
+
+
+export const DeviceType = {
+  android: 'android',
+  ios: 'ios',
+  mobile: 'mobile'
+} as const
+
+export type DeviceType = (typeof DeviceType)[keyof typeof DeviceType]
