@@ -1,0 +1,27 @@
+export declare const ErrorCodes: {
+    readonly VALIDATION_ERROR: "VALIDATION_ERROR";
+    readonly UNAUTHORIZED: "UNAUTHORIZED";
+    readonly FORBIDDEN: "FORBIDDEN";
+    readonly NOT_FOUND: "NOT_FOUND";
+    readonly CONFLICT: "CONFLICT";
+    readonly INTERNAL_ERROR: "INTERNAL_ERROR";
+    readonly AUTH_BR01: "AUTH_BR01";
+    readonly AUTH_BR02: "AUTH_BR02";
+    readonly AUTH_BR03: "AUTH_BR03";
+    readonly AUTH_BR04: "AUTH_BR04";
+    readonly AUTH_BR05: "AUTH_BR05";
+    readonly AUTH_BR06: "AUTH_BR06";
+    readonly HABIT_BR02: "HABIT_BR02";
+    readonly HABIT_BR03: "HABIT_BR03";
+    readonly HABIT_BR06: "HABIT_BR06";
+    readonly SCH_BR05: "SCH_BR05";
+    readonly SCH_BR06: "SCH_BR06";
+    readonly LOG_BR02: "LOG_BR02";
+    readonly LOG_BR03: "LOG_BR03";
+    readonly LOG_BR13: "LOG_BR13";
+    readonly CAT_BR05: "CAT_BR05";
+    readonly CAT_BR08: "CAT_BR08";
+    readonly ADM_BR01: "ADM_BR01";
+    readonly ADM_BR06: "ADM_BR06";
+};
+export type ErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];

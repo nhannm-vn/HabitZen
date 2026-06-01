@@ -1,0 +1,15 @@
+import * as Prisma from './internal/prismaNamespaceBrowser.js';
+export { Prisma };
+export * as $Enums from './enums.js';
+export * from './enums.js';
+export type User = Prisma.UserModel;
+export type Category = Prisma.CategoryModel;
+export type Habit = Prisma.HabitModel;
+export type Schedule = Prisma.ScheduleModel;
+export type HabitLog = Prisma.HabitLogModel;
+export type Reminder = Prisma.ReminderModel;
+export type Streak = Prisma.StreakModel;
+export type AdminLog = Prisma.AdminLogModel;
+export type CelebrityHabitTemplate = Prisma.CelebrityHabitTemplateModel;
+export type CelebrityHabitTemplateItem = Prisma.CelebrityHabitTemplateItemModel;
+export type UserImportedTemplate = Prisma.UserImportedTemplateModel;
